@@ -16,9 +16,9 @@ except ImportError:
 
 load_dotenv()
 GOOGLE_API_KEY = (
-    st.secrets["GEMINI_API_KEY"]
-    if "GEMINI_API_KEY" in st.secrets
-    else os.getenv("GEMINI_API_KEY")
+    st.secrets["GOOGLE_API_KEY"]
+    if "GOOGLE_API_KEY" in st.secrets
+    else os.getenv("GOOGLE_API_KEY")
 )
 
 if not GOOGLE_API_KEY:
