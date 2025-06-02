@@ -14,9 +14,14 @@ except ImportError:
     PdfReader = None
 
 load_dotenv()
-GOOGLE_API_KEY = os.getenv("GEMINI_API_KEY")
+GOOGLE_API_KEY = (
+    st.secrets["GEMINI_API_KEY"]
+    if "GEMINI_API_KEY" in st.secrets
+    else os.getenv("GEMINI_API_KEY")
+)
+
 if not GOOGLE_API_KEY:
-    raise ValueError("GEMINI_API_KEY not found in environment variables.")
+    raise ValueError("GEMINI_API_KEY not found in environment or Streamlit secrets")
 
 genai.configure(api_key=GOOGLE_API_KEY)
 model = genai.GenerativeModel("gemini-2.0-flash")
